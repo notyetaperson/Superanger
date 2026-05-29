@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced pixel rearrangement tool that rearranges pixels from a source image to match a modulator image using optimized spatial hash algorithms and Lab color space.">
+    <meta name="keywords" content="pixel rearrangement, image processing, pixel art, image manipulation, canvas, web app">
+    <meta name="author" content="Pixel Rearrangement Tool">
+    <meta name="theme-color" content="#1a1a2e">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pixel Rearrangement Tool">
+    <meta property="og:description" content="Rearrange pixels from one image to match another using advanced algorithms.">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pixel Rearrangement Tool">
+    <meta name="twitter:description" content="Rearrange pixels from one image to match another using advanced algorithms.">
+    
+    <title>Pixel Rearrangement Tool</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preload" href="js/main.js" as="script">
+    
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <h1>Pixel Rearrangement Tool</h1>
+        <p class="description">Upload a source image and a modulator image. The tool will rearrange pixels from the source to match the modulator image.</p>
+        
+        <div class="upload-section">
+                    <div class="upload-box">
+                        <label for="sourceImage">Source Image</label>
+                        <input type="file" id="sourceImage" accept="image/jpeg,image/jpg,image/png,image/gif,image/webp" aria-label="Upload source image" aria-describedby="sourceInfo">
+                        <div class="image-info" id="sourceInfo" role="status" aria-live="polite"></div>
+                        <div class="preview-container">
+                            <canvas id="sourcePreview" width="400" height="300" style="display: block; max-width: 100%; height: auto;" aria-label="Source image preview"></canvas>
+                            <p class="preview-label">Source Preview</p>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-box">
+                        <label for="modulatorImage">Modulator Image</label>
+                        <input type="file" id="modulatorImage" accept="image/jpeg,image/jpg,image/png,image/gif,image/webp" aria-label="Upload modulator image" aria-describedby="modulatorInfo">
+                        <div class="image-info" id="modulatorInfo" role="status" aria-live="polite"></div>
+                        <div class="preview-container">
+                            <canvas id="modulatorPreview" width="400" height="300" style="display: block; max-width: 100%; height: auto;" aria-label="Modulator image preview"></canvas>
+                            <p class="preview-label">Modulator Preview</p>
+                        </div>
+                    </div>
+        </div>
+        
+                    <button id="executeBtn" class="execute-btn" disabled aria-label="Execute pixel rearrangement" aria-describedby="status">
+                        <span class="btn-text">Execute</span>
+                        <span class="btn-loader" style="display: none;" aria-hidden="true">⏳</span>
+                    </button>
+        
+                    <div class="progress-container" id="progressContainer" style="display: none;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Processing progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText" aria-live="polite">0%</div>
+                    </div>
+        
+        <div class="result-section">
+            <div class="result-header">
+                <h2>Result</h2>
+                            <button id="downloadBtn" class="download-btn" style="display: none;" title="Download Result Image" aria-label="Download result image">
+                                <span aria-hidden="true">⬇</span> Download
+                            </button>
+            </div>
+            <div class="result-container">
+                            <canvas id="resultCanvas" width="800" height="600" style="display: block; max-width: 100%; height: auto;" aria-label="Result image"></canvas>
+                        </div>
+                        <div class="status" id="status" role="status" aria-live="polite" aria-atomic="true"></div>
+        </div>
+    </div>
+    
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
